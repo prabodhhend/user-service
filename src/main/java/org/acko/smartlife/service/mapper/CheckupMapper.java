@@ -1,10 +1,11 @@
 package org.acko.smartlife.service.mapper;
 
-import org.acko.smartlife.constants.DataType;
 import org.acko.smartlife.models.dao.jpa.Checkup;
+import org.acko.smartlife.models.dao.jpa.CheckupDetails;
 import org.acko.smartlife.models.dto.CheckupDetailResonse;
 import org.acko.smartlife.models.dto.CheckupResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,41 +14,43 @@ import java.util.stream.Collectors;
  */
 public class CheckupMapper {
 
-    public static CheckupResponse map(String userId, List<Checkup> checkup) {
-        CheckupResponse response = new CheckupResponse();
-        response.setUserId(userId);
-        if (!checkup.isEmpty()) {
+    public static List<CheckupResponse> map(List<Checkup> checkupList) {
+        List<CheckupResponse> checkupResponses = new ArrayList<>();
+        if (!checkupList.isEmpty()) {
+            checkupResponses = checkupList.stream()
+                    .map(checkup -> {
+                        CheckupResponse checkupResponse = new CheckupResponse();
+                        checkupResponse.setUserId(checkup.getUserId());
 
+                        List<CheckupDetailResonse> details = checkup.getCheckupDetailsList().stream()
+                                .map(checkupDetails -> {
+                                    CheckupDetailResonse detailResonse = new CheckupDetailResonse();
 
-            List<CheckupDetailResonse> details = checkup.stream()
-                    .map(checkupResponse -> {
-                        CheckupDetailResonse checkupDetail = new CheckupDetailResonse();
-                        checkupDetail.setDate(checkupResponse.getCheckupDate());
+                                    detailResonse.setParameter(checkupDetails.getParameter());
+                                    setValue(checkupDetails, detailResonse);
 
-//                        checkupResponse.getCheckupDetailsList()
+                                    return detailResonse;
+                                }).collect(Collectors.toList());
 
+                        checkupResponse.setDetails(details);
+                        return checkupResponse;
 
-
-
-//                        checkupDetail.setParameter(detail.get());
-//                        setValue(checkupDetail, detail.getValue(), detail.getDataType());
-                        return checkupDetail;
                     }).collect(Collectors.toList());
-            response.setDetails(details);
         }
-        return response;
+        return checkupResponses;
     }
 
-    private static void setValue(CheckupDetailResonse checkupDetail, String value, DataType dataType) {
-        switch (dataType) {
+    private static void setValue(CheckupDetails checkupDetails, CheckupDetailResonse detailResonse) {
+        String value = checkupDetails.getValue();
+        switch (checkupDetails.getDataType()) {
             case BOOLEAN:
-                checkupDetail.setValue(Boolean.valueOf(value));
+                detailResonse.setValue(Boolean.valueOf(value));
                 break;
             case STRING:
-                checkupDetail.setValue(value.toString());
+                detailResonse.setValue(value.toString());
                 break;
             case DOUBLE:
-                checkupDetail.setValue(Double.parseDouble(value));
+                detailResonse.setValue(Double.parseDouble(value));
                 break;
         }
     }

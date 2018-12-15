@@ -25,14 +25,11 @@ public class CheckupServiceImpl implements CheckupService {
     @Autowired
     private CheckupRepository checkupRepository;
 
-//    @Autowired
-//    private CheckupDetailsRepository checkupDetailsRepository;
-
     @Override
-    public CheckupResponse getDetails(String userId) {
+    public List<CheckupResponse> getDetails(String userId) {
         log.info("Fetching checkup details");
         userService.validate(userId);
         List<Checkup> checkupList = checkupRepository.findByUserId(userId);
-        return CheckupMapper.map(userId, checkupList);
+        return CheckupMapper.map(checkupList);
     }
 }

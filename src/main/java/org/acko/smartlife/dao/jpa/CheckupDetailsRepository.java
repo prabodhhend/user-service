@@ -12,5 +12,5 @@
 //@Repository
 //public interface CheckupDetailsRepository extends JpaRepository<CheckupDetails, String> {
 //
-//    List<CheckupDetails> findByUserId(String userId);
+//    List<CheckupDetails> findByCheckupId(String checkupId);
 //}

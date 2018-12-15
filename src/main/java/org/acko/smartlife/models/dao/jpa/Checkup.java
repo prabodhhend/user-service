@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author prabodh.hend
@@ -46,7 +46,8 @@ public class Checkup extends BaseEntity {
     @Column(name = "is_rewarded")
     private boolean isRewarded;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="checkup",cascade = CascadeType.ALL)
-    private List<CheckupDetails> checkupDetailsList;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "checkup_id")
+    private List<CheckupDetails> checkupDetailsList = new ArrayList<>();
 
 }

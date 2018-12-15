@@ -9,7 +9,6 @@ import java.util.Date;
  */
 @Data
 public class CheckupDetailResonse {
-    private Date date;
     private String parameter;
     private Object value;
 }

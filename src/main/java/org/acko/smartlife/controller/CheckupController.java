@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author prabodh.hend
  */
@@ -25,9 +27,9 @@ public class CheckupController {
     private CheckupService checkupService;
 
     @GetMapping("/checkup-details/{userId}/")
-    public ResponseEntity<CheckupResponse> getCheckupDetails(@PathVariable("userId") String userId) {
+    public ResponseEntity<List<CheckupResponse>> getCheckupDetails(@PathVariable("userId") String userId) {
         log.info("Fetching checkup details for user:{}", userId);
-        CheckupResponse response = checkupService.getDetails(userId);
+        List<CheckupResponse> response = checkupService.getDetails(userId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

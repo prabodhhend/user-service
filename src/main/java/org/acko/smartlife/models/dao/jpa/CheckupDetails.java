@@ -1,5 +1,6 @@
 package org.acko.smartlife.models.dao.jpa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,11 +20,16 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CheckupDetails extends BaseEntity {
+public class CheckupDetails {
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "checkup_id")
-    private Checkup checkup;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    //    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "checkup_id")
+    private String checkupId;
 
     @Column(name = "parameter")
     private String parameter;
@@ -35,5 +41,8 @@ public class CheckupDetails extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private DataType dataType;
 
+    @JsonIgnore
+    @Column(name = "is_deleted")
+    private boolean deleted;
 
 }
