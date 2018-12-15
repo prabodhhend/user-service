@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     public UserDto findByEmail(String email) {
         User user = userRepository.findByUsername(email);
         if (null == user) {
-            throw new RuntimeException("Cannot Find User");
+            throw new RuntimeException("Cannot Find User:" + email);
         }
         return UserMapper.map(user);
     }
