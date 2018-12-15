@@ -2,8 +2,8 @@ package org.acko.smartlife.controller;
 
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.acko.smartlife.models.dto.RewardResponse;
-import org.acko.smartlife.service.RewardService;
+import org.acko.smartlife.models.dto.UserDto;
+import org.acko.smartlife.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1")
 @Slf4j
-@Api(value = "RewardController", description = "Reward Apis", tags = {"Reward Apis"})
-public class RewardController {
+@Api(value = "UserController ", description = "User Apis", tags = {"User Apis"})
+public class UserController {
 
     @Autowired
-    private RewardService rewardService;
+    private UserService userService;
 
-    @GetMapping("/rewards/{userId}/")
-    public ResponseEntity<RewardResponse> getRewards(@PathVariable("userId") Long userId) {
-        log.info("Fetching reward details for user:{}", userId);
-        RewardResponse response = rewardService.getSummary(userId);
+    @GetMapping("/rewards/{email}/")
+    public ResponseEntity<UserDto> getRewards(@PathVariable("email") String email) {
+        log.info("Fetching user details for user:{}", email);
+        UserDto response = userService.findByEmail(email);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

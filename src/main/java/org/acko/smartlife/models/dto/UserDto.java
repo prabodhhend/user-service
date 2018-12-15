@@ -1,19 +1,19 @@
-package org.acko.smartlife.models.dao.integration;
+package org.acko.smartlife.models.dto;
 
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @author prabodh.hend
  */
 @Data
-public class User {
+public class UserDto {
 
     private Long id;
     private String firstName;
     private String lastName;
     private String username;
-    private String profileName;
-    private String password;
     private String countryCode;
     private String contactNumber;
     private boolean accountExpired = false;
