@@ -1,5 +1,6 @@
 package org.acko.smartlife.service;
 
+import org.acko.smartlife.constants.RewardPointType;
 import org.acko.smartlife.models.dto.RewardResponse;
 
 /**
@@ -8,4 +9,6 @@ import org.acko.smartlife.models.dto.RewardResponse;
 public interface RewardService {
 
     RewardResponse getSummary(String userId);
+
+    public boolean updateRewards(String rewardId, RewardPointType type, Double amount);
 }

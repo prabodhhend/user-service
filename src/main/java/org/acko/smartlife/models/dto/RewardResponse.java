@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 public class RewardResponse {
 
-    private String userId;
+    private Long userId;
     private Date date;
     private Double points;
     private Double redeemed;

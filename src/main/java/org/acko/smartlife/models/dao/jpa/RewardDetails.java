@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.acko.smartlife.constants.RewardPointType;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author prabodh.hend
@@ -31,5 +29,9 @@ public class RewardDetails extends BaseEntity {
 
     @Column(name = "redeemed")
     private Double redeemed;
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private RewardPointType type;
 
 }

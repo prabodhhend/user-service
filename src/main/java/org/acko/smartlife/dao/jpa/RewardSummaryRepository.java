@@ -13,4 +13,6 @@ import java.util.List;
 public interface RewardSummaryRepository extends JpaRepository<RewardSummary, String> {
 
     RewardSummary findByUserId(String userId);
+
+    RewardSummary findByRewardId(String rewardId);
 }
