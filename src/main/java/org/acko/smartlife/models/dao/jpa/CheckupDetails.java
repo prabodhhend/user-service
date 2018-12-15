@@ -27,7 +27,9 @@ public class CheckupDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //    @ManyToOne(fetch = FetchType.LAZY)
+//        @ManyToOne(fetch = FetchType.LAZY)
+//        @JoinColumn(name = "checkup_id")
+//        private Checkup checkup;
     @Column(name = "checkup_id")
     private String checkupId;
 

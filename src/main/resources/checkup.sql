@@ -31,6 +31,5 @@ CREATE TABLE `checkup_details` (
   `data_type` enum('DOUBLE','STRING','BOOLEAN') NOT NULL DEFAULT 'STRING',
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `idx_checkup_id` (`checkup_id`),
-  CONSTRAINT `checkup_details_ibfk_1` FOREIGN KEY (`checkup_id`) REFERENCES `checkup` (`checkup_id`) ON DELETE CASCADE
+  KEY `idx_checkup_id` (`checkup_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;

@@ -7,6 +7,7 @@ import org.acko.smartlife.models.dto.CheckupResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
  */
 public class CheckupMapper {
 
-    public static List<CheckupResponse> map(List<Checkup> checkupList) {
+    public static List<CheckupResponse> map(List<Checkup> checkupList, Map<String, List<CheckupDetails>> checkupDetailsMap) {
         List<CheckupResponse> checkupResponses = new ArrayList<>();
         if (!checkupList.isEmpty()) {
             checkupResponses = checkupList.stream()
@@ -22,7 +23,9 @@ public class CheckupMapper {
                         CheckupResponse checkupResponse = new CheckupResponse();
                         checkupResponse.setUserId(checkup.getUserId());
 
-                        List<CheckupDetailResonse> details = checkup.getCheckupDetailsList().stream()
+                        List<CheckupDetails> checkupDetailsList =  checkupDetailsMap.get(checkup.getCheckupId());
+
+                        List<CheckupDetailResonse> details = checkupDetailsList.stream()
                                 .map(checkupDetails -> {
                                     CheckupDetailResonse detailResonse = new CheckupDetailResonse();
 
