@@ -22,6 +22,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto findByEmail(String email) {
         User user = userRepository.findByUsername(email);
+        if (null == user) {
+            throw new RuntimeException("Cannot Find User");
+        }
         return UserMapper.map(user);
     }
 }

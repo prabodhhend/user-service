@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.acko.smartlife</groupId>
-    <artifactId>reward-service</artifactId>
+    <artifactId>user-service</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Acko Checkup Service</name>
+    <name>Acko User Service</name>
 
     <properties>
         <java.version>1.8</java.version>

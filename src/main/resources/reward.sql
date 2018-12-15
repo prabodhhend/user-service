@@ -8,6 +8,8 @@ CREATE TABLE `user` (
   `last_name` varchar(100) DEFAULT '',
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `country_code` varchar(10) ,
+  `contact_number` varchar(10) ,
   `account_expired` bit(1) DEFAULT b'0',
   `is_enabled` bit(1) DEFAULT b'1',
   `is_verified` bit(1) DEFAULT b'1',
