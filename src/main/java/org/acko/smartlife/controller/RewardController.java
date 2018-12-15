@@ -25,7 +25,7 @@ public class RewardController {
     private RewardService rewardService;
 
     @GetMapping("/rewards/{userId}/")
-    public ResponseEntity<RewardResponse> getRewards(@PathVariable("userId") String userId) {
+    public ResponseEntity<RewardResponse> getRewards(@PathVariable("userId") Long userId) {
         log.info("Fetching reward details for user:{}", userId);
         RewardResponse response = rewardService.getSummary(userId);
         return new ResponseEntity<>(response, HttpStatus.OK);

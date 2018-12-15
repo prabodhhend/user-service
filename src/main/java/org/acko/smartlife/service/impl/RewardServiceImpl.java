@@ -32,7 +32,7 @@ public class RewardServiceImpl implements RewardService {
     private RewardDetailsRepository rewardDetailsRepository;
 
     @Override
-    public RewardResponse getSummary(String userId) {
+    public RewardResponse getSummary(Long userId) {
         userService.validate(userId);
         RewardSummary summary = rewardSummaryRepository.findByUserId(userId);
         return RewardMapper.map(summary);

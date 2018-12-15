@@ -4,8 +4,8 @@ use rewards;
 
 CREATE TABLE `rewards_summary` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(128) NOT NULL,
-  `reward_id` timestamp NULL DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `reward_id` varchar(128) NOT NULL,
   `total_rewards` DECIMAL( 10, 2 ),
   `total_redeemed` DECIMAL( 10, 2 ),
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
@@ -21,7 +21,7 @@ CREATE TABLE `rewards_summary` (
 
 CREATE TABLE `rewards_details` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `reward_id` timestamp NULL DEFAULT NULL,
+  `reward_id`varchar(128) NOT NULL,
   `added` DECIMAL( 10, 2 ),
   `redeemed` DECIMAL( 10, 2 ),
   `type` enum('ADD','REDEEM') NOT NULL DEFAULT 'ADD',

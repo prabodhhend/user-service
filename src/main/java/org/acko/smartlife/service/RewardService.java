@@ -8,7 +8,7 @@ import org.acko.smartlife.models.dto.RewardResponse;
  */
 public interface RewardService {
 
-    RewardResponse getSummary(String userId);
+    RewardResponse getSummary(Long userId);
 
     public boolean updateRewards(String rewardId, RewardPointType type, Double amount);
 }

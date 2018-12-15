@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface RewardSummaryRepository extends JpaRepository<RewardSummary, String> {
 
-    RewardSummary findByUserId(String userId);
+    RewardSummary findByUserId(Long userId);
 
     RewardSummary findByRewardId(String rewardId);
 }
