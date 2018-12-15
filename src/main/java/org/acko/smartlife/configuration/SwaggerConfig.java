@@ -54,9 +54,9 @@ public class SwaggerConfig {
     }
 
     private ApiInfo metaData() {
-        String description = "Acko Checkup Service API";
+        String description = "Acko Reward Service API";
         return new ApiInfoBuilder()
-                .title("Acko Checkup Service REST API")
+                .title("Acko Reward Service REST API")
                 .description(description)
                 .version("0.0.1")
                 .build();
